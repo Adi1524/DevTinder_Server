@@ -8,7 +8,18 @@ const User = require("../models/user.js");
 authRouter.post("/signup", async (req, res) => {
   validationSignUpData(req);
 
-  const { firstName, lastName, emailId, password } = req.body;
+  const {
+    firstName,
+    lastName,
+    emailId,
+    password,
+    age,
+    gender,
+    photoUrl,
+    skills,
+    about,
+  } = req.body;
+  console.log("req.body", req.body);
 
   const passwordHash = await bcrypt.hash(password, 10);
 
@@ -16,6 +27,11 @@ authRouter.post("/signup", async (req, res) => {
     firstName,
     lastName,
     emailId,
+    age,
+    gender,
+    photoUrl,
+    about,
+    skills,
     password: passwordHash,
   });
 
